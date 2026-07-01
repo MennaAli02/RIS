@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: #f0f2f5;
+  color: #1f2937;
+}
+
+.section-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8eaed;
+}
+
+.section-title {
+  color: #2F6FA3;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #2F6FA3;
+}
+
+.field-label {
+  display: block;
+  color: #5f6368;
+  font-weight: 500;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 14px;
+  background: #fff;
+  transition: all 0.15s ease;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: #2F6FA3;
+  box-shadow: 0 0 0 2px rgba(47, 111, 163, 0.15);
+}
+
+.field-input:disabled {
+  background: #f3f4f6;
+  color: #6b7280;
+}
