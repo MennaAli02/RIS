@@ -84,12 +84,14 @@ export default function ManagementForm() {
   const [showReportViewer, setShowReportViewer] = useState(false)
 
   useEffect(() => {
-    if (!isNew) {
-      const rec = getById('managements', id)
-      if (rec) setForm(rec)
-    } else {
-      setForm({ ...EMPTY, accession: `ACC-${Date.now().toString().slice(-6)}`, createUid: 1 })
+    if (isNew) {
+      // WorkList is read/edit only (create="false" in the real view) - new
+      // bookings are created from the Ris Appointment screen instead.
+      navigate('/appointments/new', { replace: true })
+      return
     }
+    const rec = getById('managements', id)
+    if (rec) setForm(rec)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 

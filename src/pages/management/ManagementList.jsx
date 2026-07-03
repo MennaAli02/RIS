@@ -83,7 +83,6 @@ export default function ManagementList() {
         rows={rows}
         searchKeys={['_patient', '_pid', 'accession']}
         onRowClick={(row) => navigate(`/management/${row.id}`)}
-        onCreate={() => navigate('/management/new')}
       />
       {viewerRecord && (
         <ReportViewerModal

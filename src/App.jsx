@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { DataProvider } from './data/DataContext'
 import AppLayout from './components/layout/AppLayout'
+import AppointmentList from './pages/appointments/AppointmentList'
+import AppointmentForm from './pages/appointments/AppointmentForm'
 import ManagementList from './pages/management/ManagementList'
 import ManagementForm from './pages/management/ManagementForm'
 import PatientList from './pages/patients/PatientList'
@@ -18,7 +20,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />}>
-            <Route index element={<Navigate to="/management" replace />} />
+            <Route index element={<Navigate to="/appointments" replace />} />
+
+            <Route path="appointments" element={<AppointmentList />} />
+            <Route path="appointments/:id" element={<AppointmentForm />} />
 
             <Route path="management" element={<ManagementList />} />
             <Route path="management/:id" element={<ManagementForm />} />
@@ -35,7 +40,7 @@ function App() {
             <Route path="document-templates" element={<DocumentTemplateList />} />
             <Route path="document-templates/:id" element={<DocumentTemplateForm />} />
 
-            <Route path="*" element={<Navigate to="/management" replace />} />
+            <Route path="*" element={<Navigate to="/appointments" replace />} />
           </Route>
         </Routes>
       </BrowserRouter>

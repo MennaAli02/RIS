@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom'
 
 const NAV_ITEMS = [
+  { to: '/appointments', label: 'Ris Appointment', icon: '📅' },
   { to: '/management', label: 'WorkList', icon: '🩻' },
   { to: '/patients', label: 'Patients', icon: '🧑‍🤝‍🧑' },
   { to: '/doctors', label: 'Doctors', icon: '🩺' },
