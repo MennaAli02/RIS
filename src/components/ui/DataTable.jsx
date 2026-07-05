@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import SearchInput from './SearchInput'
 
 // Generic stand-in for an Odoo <tree> view: search box + sortable-ish table +
 // row click to open the form. `columns` is [{ key, label, render?(row) }].
@@ -18,15 +19,7 @@ export default function DataTable({ title, columns, rows, onRowClick, onCreate, 
       <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-gray-100">
         <h2 className="text-lg font-bold text-brand-700">{title}</h2>
         <div className="flex items-center gap-2">
-          {searchKeys.length > 0 && (
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search..."
-              className="field-input w-56"
-            />
-          )}
+          {searchKeys.length > 0 && <SearchInput value={query} onChange={setQuery} />}
           {onCreate && (
             <button
               type="button"

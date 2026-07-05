@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useData } from '../../data/DataContext'
 import Badge from '../../components/ui/Badge'
+import SearchInput from '../../components/ui/SearchInput'
 import { STATE_OPTIONS } from '../../data/seed'
 import { formatDateTime } from '../../lib/utils'
 
@@ -112,17 +113,28 @@ export default function AppointmentList() {
       <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-gray-100">
         <h2 className="text-lg font-bold text-brand-700">Ris Appointment</h2>
         <div className="flex items-center gap-2">
-          <label className="flex items-center gap-1 text-sm text-gray-600">
-            <input type="checkbox" checked={groupByPatient} onChange={(e) => setGroupByPatient(e.target.checked)} />
+          <button
+            type="button"
+            onClick={() => setGroupByPatient((v) => !v)}
+            aria-pressed={groupByPatient}
+            className={[
+              'flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-full border transition-colors',
+              groupByPatient
+                ? 'bg-brand-500 border-brand-500 text-white'
+                : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50',
+            ].join(' ')}
+          >
+            <span
+              className={[
+                'h-3.5 w-3.5 rounded-sm border flex items-center justify-center text-[10px] leading-none',
+                groupByPatient ? 'bg-white border-white text-brand-600' : 'border-gray-400',
+              ].join(' ')}
+            >
+              {groupByPatient ? '✓' : ''}
+            </span>
             Group by Patient
-          </label>
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search..."
-            className="field-input w-56"
-          />
+          </button>
+          <SearchInput value={query} onChange={setQuery} />
           <button
             type="button"
             onClick={() => navigate('/appointments/new')}

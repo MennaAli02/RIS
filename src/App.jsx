@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { DataProvider } from './data/DataContext'
 import AppLayout from './components/layout/AppLayout'
-import AppointmentList from './pages/appointments/AppointmentList'
+import AppointmentHome from './pages/appointments/AppointmentHome'
 import AppointmentForm from './pages/appointments/AppointmentForm'
-import ManagementList from './pages/management/ManagementList'
+import ManagementHome from './pages/management/ManagementHome'
 import ManagementForm from './pages/management/ManagementForm'
 import PatientList from './pages/patients/PatientList'
 import PatientForm from './pages/patients/PatientForm'
@@ -22,10 +22,10 @@ function App() {
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Navigate to="/appointments" replace />} />
 
-            <Route path="appointments" element={<AppointmentList />} />
+            <Route path="appointments" element={<AppointmentHome />} />
             <Route path="appointments/:id" element={<AppointmentForm />} />
 
-            <Route path="management" element={<ManagementList />} />
+            <Route path="management" element={<ManagementHome />} />
             <Route path="management/:id" element={<ManagementForm />} />
 
             <Route path="patients" element={<PatientList />} />

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useData } from '../../data/DataContext'
 import { computeAge, formatCurrency } from '../../lib/utils'
 import {
@@ -97,6 +97,7 @@ export default function AppointmentForm() {
   const { id } = useParams()
   const isNew = id === 'new'
   const navigate = useNavigate()
+  const location = useLocation()
   const { getById, getAll, create, update, remove } = useData()
 
   const [form, setForm] = useState(EMPTY)
@@ -108,7 +109,15 @@ export default function AppointmentForm() {
       const rec = getById('managements', id)
       if (rec) setForm({ ...EMPTY, ...rec })
     } else {
-      setForm({ ...EMPTY, accession: `ACC-${Date.now().toString().slice(-6)}`, createUid: 1 })
+      // Booking from a calendar cell click passes a prefill (exam date /
+      // modality / machine) via router state, same as the widget's
+      // `default_exam_date` / `default_category_id` context.
+      setForm({
+        ...EMPTY,
+        accession: `ACC-${Date.now().toString().slice(-6)}`,
+        createUid: 1,
+        ...(location.state || {}),
+      })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
