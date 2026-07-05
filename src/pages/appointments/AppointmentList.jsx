@@ -14,6 +14,16 @@ export default function AppointmentList() {
   const { getAll } = useData()
   const [query, setQuery] = useState('')
   const [groupByPatient, setGroupByPatient] = useState(true)
+  const [collapsedGroups, setCollapsedGroups] = useState(new Set())
+
+  const toggleGroup = (key) => {
+    setCollapsedGroups((prev) => {
+      const next = new Set(prev)
+      if (next.has(key)) next.delete(key)
+      else next.add(key)
+      return next
+    })
+  }
 
   const records = getAll('managements')
   const patients = getAll('patients')
@@ -127,7 +137,7 @@ export default function AppointmentList() {
             <span
               className={[
                 'h-3.5 w-3.5 rounded-sm border flex items-center justify-center text-[10px] leading-none',
-                groupByPatient ? 'bg-white border-white text-brand-600' : 'border-gray-400',
+                groupByPatient ? 'bg-white border-white text-brand-700' : 'border-gray-400',
               ].join(' ')}
             >
               {groupByPatient ? '✓' : ''}
@@ -147,27 +157,35 @@ export default function AppointmentList() {
 
       <div className="overflow-x-auto">
         {groupByPatient
-          ? groups.map((g) => (
-              <div key={g.patientId ?? 'unknown'} className="border-b border-gray-200">
-                <div className="flex items-center gap-2 bg-brand-50 px-4 py-2">
-                  <span className="font-semibold text-brand-700">{g.patientName}</span>
-                  <span className="text-xs text-gray-500">({g.rows.length})</span>
-                  {g.patientId && (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        navigate(`/patients/${g.patientId}`)
-                      }}
-                      className="ml-auto text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full"
-                    >
-                      ↗ Open Patient
-                    </button>
-                  )}
+          ? groups.map((g) => {
+              const key = g.patientId ?? 'unknown'
+              const isCollapsed = collapsedGroups.has(key)
+              return (
+                <div key={key} className="border-b border-gray-200">
+                  <div
+                    onClick={() => toggleGroup(key)}
+                    className="flex items-center gap-2 bg-brand-50 px-4 py-2 cursor-pointer select-none"
+                  >
+                    <span className={`text-brand-700 transition-transform ${isCollapsed ? '-rotate-90' : ''}`}>▾</span>
+                    <span className="font-semibold text-brand-700">{g.patientName}</span>
+                    <span className="text-xs text-gray-500">({g.rows.length})</span>
+                    {g.patientId && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          navigate(`/patients/${g.patientId}`)
+                        }}
+                        className="ml-auto text-xs bg-green-100 text-green-700 font-semibold px-2 py-1 rounded-full"
+                      >
+                        ↗ Open Patient
+                      </button>
+                    )}
+                  </div>
+                  {!isCollapsed && renderTable(g.rows)}
                 </div>
-                {renderTable(g.rows)}
-              </div>
-            ))
+              )
+            })
           : renderTable(filtered)}
       </div>
     </div>
