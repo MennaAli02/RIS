@@ -58,24 +58,24 @@ export default function TechnicianForm() {
     setError('')
     if (isNew) {
       const created = create('technicians', form)
-      navigate(`/technicians/${created.id}`)
+      navigate(`/radiographers/${created.id}`)
     } else {
       update('technicians', id, form)
     }
   }
 
   const handleDelete = () => {
-    if (!isNew && confirm('Delete this technician?')) {
+    if (!isNew && confirm('Delete this radiographer?')) {
       remove('technicians', id)
-      navigate('/technicians')
+      navigate('/radiographers')
     }
   }
 
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <button onClick={() => navigate('/technicians')} className="text-sm text-brand-700 hover:underline">
-          ← Back to Technicians
+        <button onClick={() => navigate('/radiographers')} className="text-sm text-brand-700 hover:underline">
+          ← Back to Radiographers
         </button>
         <div className="flex gap-2">
           {!isNew && (
@@ -91,8 +91,8 @@ export default function TechnicianForm() {
 
       <div className="rounded-xl overflow-hidden shadow-sm border border-gray-200 max-w-4xl">
         <div className="bg-brand-700 text-white text-center py-5">
-          <h1 className="text-xl font-bold">🔬 Technician Registration</h1>
-          <p className="text-white/80 text-sm mt-1">Complete the form below to register a new technician</p>
+          <h1 className="text-xl font-bold">🔬 Radiographer Registration</h1>
+          <p className="text-white/80 text-sm mt-1">Complete the form below to register a new radiographer</p>
         </div>
         <div className="p-6">
           {error && <div className="mb-4 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md px-3 py-2">{error}</div>}
@@ -102,8 +102,8 @@ export default function TechnicianForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
               <TextField label="Name (Partner)" value={form.partnerName} onChange={set('partnerName')} placeholder="اختر أو أنشئ شريك" />
               <TextField label="Phone" value={form.phone} onChange={set('phone')} placeholder="+20 XXX XXX XXXX" />
-              <TextField label="Specialization" value={form.specialization} onChange={set('specialization')} placeholder="e.g. Radiology Technician" />
-              <TextField label="Email" value={form.email} onChange={set('email')} placeholder="technician@example.com" />
+              <TextField label="Specialization" value={form.specialization} onChange={set('specialization')} placeholder="e.g. Radiographer" />
+              <TextField label="Email" value={form.email} onChange={set('email')} placeholder="radiographer@example.com" />
               <TextField label="Degree" value={form.degree} onChange={set('degree')} placeholder="e.g. Diploma, Bachelor" />
             </div>
           </div>

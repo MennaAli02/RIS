@@ -17,12 +17,12 @@ export default function TechnicianList() {
 
   return (
     <DataTable
-      title="Technicians"
+      title="Radiographers"
       columns={columns}
       rows={technicians}
       searchKeys={['partnerName', 'specialization', 'phone', 'email']}
-      onRowClick={(row) => navigate(`/technicians/${row.id}`)}
-      onCreate={() => navigate('/technicians/new')}
+      onRowClick={(row) => navigate(`/radiographers/${row.id}`)}
+      onCreate={() => navigate('/radiographers/new')}
     />
   )
 }

@@ -249,7 +249,7 @@ export default function AppointmentForm() {
     <div dir="ltr">
       <div className="flex items-center justify-between mb-4" dir="ltr">
         <button onClick={() => navigate('/appointments')} className="text-sm text-brand-700 hover:underline">
-          ← Back to Ris Appointment
+          ← Back to Appointment
         </button>
         <div className="flex gap-2">
           {!isNew && (
@@ -363,7 +363,7 @@ export default function AppointmentForm() {
                   <Many2OneField label="Procedure" value={form.cashProductId} onChange={handleProductChange} options={toOptions(products, 'name')} />
                   <Many2OneField label="Body Part" value={form.bodyPartModelId} onChange={set('bodyPartModelId')} options={toOptions(bodyParts, 'name')} />
                   <Many2OneField label="Doctor" value={form.doctorId} onChange={set('doctorId')} options={toOptions(doctors, 'partnerName')} />
-                  <Many2OneField label="Technician" value={form.technicianId} onChange={set('technicianId')} options={toOptions(technicians, 'partnerName')} />
+                  <Many2OneField label="Radiographer" value={form.technicianId} onChange={set('technicianId')} options={toOptions(technicians, 'partnerName')} />
                   <SelectField label="Patient Condition" value={form.patientCondition} onChange={set('patientCondition')} options={PATIENT_CONDITION_OPTIONS} />
                   <TextField label="Accession" value={form.accession} disabled />
                 </div>

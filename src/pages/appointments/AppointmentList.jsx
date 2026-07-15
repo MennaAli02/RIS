@@ -121,7 +121,7 @@ export default function AppointmentList() {
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200">
       <div className="flex items-center justify-between gap-3 px-5 py-4 border-b border-gray-100">
-        <h2 className="text-lg font-bold text-brand-700">Ris Appointment</h2>
+        <h2 className="text-lg font-bold text-brand-700">Appointment</h2>
         <div className="flex items-center gap-2">
           <button
             type="button"

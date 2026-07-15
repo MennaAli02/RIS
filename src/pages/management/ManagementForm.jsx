@@ -288,7 +288,7 @@ export default function ManagementForm() {
                   <Many2OneField label="Procedure" value={form.cashProductId} onChange={handleProductChange} options={toOptions(products, 'name')} />
                   <Many2OneField label="Rad Doctor" value={form.radDoctorId} onChange={set('radDoctorId')} options={toOptions(radDoctors, 'partnerName')} />
                   <Many2OneField label="Machine" value={form.machineId} onChange={set('machineId')} options={toOptions(machines, 'name')} />
-                  <Many2OneField label="Technician" value={form.technicianId} onChange={set('technicianId')} options={toOptions(technicians, 'partnerName')} />
+                  <Many2OneField label="Radiographer" value={form.technicianId} onChange={set('technicianId')} options={toOptions(technicians, 'partnerName')} />
                   <Many2OneField label="Referral Doctor" value={form.doctorId} onChange={set('doctorId')} options={toOptions(referralDoctors, 'partnerName')} />
                   <TextField label="Body" value={form.body} onChange={set('body')} />
                   <SelectField label="Patient Condition" value={form.patientCondition} onChange={set('patientCondition')} options={PATIENT_CONDITION_OPTIONS} />

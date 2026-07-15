@@ -75,6 +75,21 @@ export default function ManagementList() {
 
   const viewerRecord = records.find((r) => r.id === viewerId)
 
+  const getRowClassName = (row) => {
+    switch (row.reportState) {
+      case 'partial':
+        return 'bg-red-50 hover:bg-red-100'
+      case 'not_verified':
+        return 'bg-sky-50 hover:bg-sky-100'
+      case 'verified':
+        return 'bg-green-50 hover:bg-green-100'
+      case 'approved':
+        return 'bg-emerald-50 hover:bg-emerald-100'
+      default:
+        return 'hover:bg-brand-50'
+    }
+  }
+
   return (
     <>
       <DataTable
@@ -83,6 +98,7 @@ export default function ManagementList() {
         rows={rows}
         searchKeys={['_patient', '_pid', 'accession']}
         onRowClick={(row) => navigate(`/management/${row.id}`)}
+        getRowClassName={getRowClassName}
       />
       {viewerRecord && (
         <ReportViewerModal

@@ -163,7 +163,7 @@ export const SEED = {
     {
       id: 1,
       partnerName: 'Youssef Mahmoud',
-      specialization: 'Radiology Technician',
+      specialization: 'Radiographer',
       degree: 'Diploma',
       phone: '01055556666',
       email: 'youssef.m@example.com',
@@ -174,7 +174,7 @@ export const SEED = {
     {
       id: 2,
       partnerName: 'Nourhan Adel',
-      specialization: 'Ultrasound Technician',
+      specialization: 'Ultrasound Radiographer',
       degree: 'Bachelor',
       phone: '01066667777',
       email: 'nourhan.adel@example.com',

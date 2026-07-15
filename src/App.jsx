@@ -34,8 +34,8 @@ function App() {
             <Route path="doctors" element={<DoctorList />} />
             <Route path="doctors/:id" element={<DoctorForm />} />
 
-            <Route path="technicians" element={<TechnicianList />} />
-            <Route path="technicians/:id" element={<TechnicianForm />} />
+            <Route path="radiographers" element={<TechnicianList />} />
+            <Route path="radiographers/:id" element={<TechnicianForm />} />
 
             <Route path="document-templates" element={<DocumentTemplateList />} />
             <Route path="document-templates/:id" element={<DocumentTemplateForm />} />

@@ -3,7 +3,7 @@ import SearchInput from './SearchInput'
 
 // Generic stand-in for an Odoo <tree> view: search box + sortable-ish table +
 // row click to open the form. `columns` is [{ key, label, render?(row) }].
-export default function DataTable({ title, columns, rows, onRowClick, onCreate, searchKeys = [] }) {
+export default function DataTable({ title, columns, rows, onRowClick, onCreate, searchKeys = [], getRowClassName }) {
   const [query, setQuery] = useState('')
 
   const filtered = useMemo(() => {
@@ -50,19 +50,22 @@ export default function DataTable({ title, columns, rows, onRowClick, onCreate, 
                 </td>
               </tr>
             )}
-            {filtered.map((row) => (
-              <tr
-                key={row.id}
-                onClick={() => onRowClick?.(row)}
-                className="border-t border-gray-100 hover:bg-brand-50 cursor-pointer"
-              >
-                {columns.map((c) => (
-                  <td key={c.key} className="px-4 py-2 whitespace-nowrap">
-                    {c.render ? c.render(row) : row[c.key]}
-                  </td>
-                ))}
-              </tr>
-            ))}
+            {filtered.map((row) => {
+              const customBg = getRowClassName ? getRowClassName(row) : 'hover:bg-brand-50'
+              return (
+                <tr
+                  key={row.id}
+                  onClick={() => onRowClick?.(row)}
+                  className={`border-t border-gray-100 cursor-pointer transition-colors ${customBg}`}
+                >
+                  {columns.map((c) => (
+                    <td key={c.key} className="px-4 py-2 whitespace-nowrap">
+                      {c.render ? c.render(row) : row[c.key]}
+                    </td>
+                  ))}
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>

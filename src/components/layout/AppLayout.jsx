@@ -5,7 +5,7 @@ import { CalendarClock, ScanLine, Users, Stethoscope, Microscope, FileText, Pane
 const NAV_SECTIONS = [
   {
     items: [
-      { to: '/appointments', label: 'Ris Appointment', icon: CalendarClock },
+      { to: '/appointments', label: 'Appointment', icon: CalendarClock },
       { to: '/management', label: 'WorkList', icon: ScanLine },
     ],
   },
@@ -14,7 +14,7 @@ const NAV_SECTIONS = [
     items: [
       { to: '/patients', label: 'Patients', icon: Users },
       { to: '/doctors', label: 'Doctors', icon: Stethoscope },
-      { to: '/technicians', label: 'Technicians', icon: Microscope },
+      { to: '/radiographers', label: 'Radiographers', icon: Microscope },
     ],
   },
   {
@@ -36,8 +36,7 @@ export default function AppLayout() {
         <div className="px-4 py-3 border-b border-white/10 flex items-center justify-between gap-2">
           {!collapsed && (
             <div className="min-w-0">
-              <h1 className="text-sm font-bold leading-tight">RIS</h1>
-              <p className="text-[10px] text-white/60 leading-tight">Radiology Information System</p>
+              <h1 className="text-base font-bold leading-tight">Appointment</h1>
             </div>
           )}
           <button
@@ -53,7 +52,7 @@ export default function AppLayout() {
           {NAV_SECTIONS.map((section, i) => (
             <div key={i} className="space-y-1">
               {section.title && !collapsed && (
-                <p className="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-white/40">
+                <p className="px-3 pt-2 pb-1 text-xs font-bold uppercase tracking-wider text-white/40">
                   {section.title}
                 </p>
               )}
